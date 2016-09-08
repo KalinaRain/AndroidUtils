@@ -4,9 +4,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import mandroid.network.NetworkDetector;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -17,6 +20,15 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         ArrayList<String> as;
+
+        TextView textView = (TextView) findViewById(R.id.netstate);
+        NetworkDetector networkDetector = new NetworkDetector(MainActivity.this);
+        if (networkDetector.isAvailable()) {
+//            textView.setText("keyong ");
+textView.setText(networkDetector.getIp());
+        } else {
+            textView.setText("bukeyong ");
+        }
     }
 
     @Override
